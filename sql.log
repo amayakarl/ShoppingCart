@@ -1,0 +1,75 @@
+select * from reciept where id = ?  and user_id = ? With Values: ["ii","4",3]
+select * from user where email = ? With Values: ["s","aakarl32@gmail.com"]
+select * from sauce With Values: []
+select * from cart where user_id = ? and state = ? With Values: ["ii",3,0]
+select * from reciept where id = ?  and user_id = ? With Values: ["ii","4",3]
+select * from reciept where id = ?  and user_id = ? With Values: ["ii","4",3]
+select * from reciept where id = ?  and user_id = ? With Values: ["ii","3",3]
+select * from payment where id = ? With Values: ["i",3]
+select * from address where id = ? With Values: ["i",4]
+select * from cart where id = ? With Values: ["i",3]
+  select cart_item.id, sauce_id, qty, item_total, title, price, img_path 
+                    from cart_item
+                        inner join sauce on cart_item.sauce_id = sauce.id 
+                    where cart_id = ? With Values: ["i",3]
+select * from reciept where id = ?  and user_id = ? With Values: ["ii","3",3]
+select * from payment where id = ? With Values: ["i",3]
+select * from address where id = ? With Values: ["i",4]
+select * from cart where id = ? With Values: ["i",3]
+  select cart_item.id, sauce_id, qty, item_total, title, price, img_path 
+                    from cart_item
+                        inner join sauce on cart_item.sauce_id = sauce.id 
+                    where cart_id = ? With Values: ["i",3]
+select * from reciept where id = ?  and user_id = ? With Values: ["ii","3",3]
+select * from payment where id = ? With Values: ["i",3]
+select * from address where id = ? With Values: ["i",4]
+select * from cart where id = ? With Values: ["i",3]
+  select cart_item.id, sauce_id, qty, item_total, title, price, img_path 
+                    from cart_item
+                        inner join sauce on cart_item.sauce_id = sauce.id 
+                    where cart_id = ? With Values: ["i",3]
+select * from reciept where id = ?  and user_id = ? With Values: ["ii","3",3]
+select * from payment where id = ? With Values: ["i",3]
+select * from address where id = ? With Values: ["i",4]
+select * from cart where id = ? With Values: ["i",3]
+  select cart_item.id, sauce_id, qty, item_total, title, price, img_path 
+                    from cart_item
+                        inner join sauce on cart_item.sauce_id = sauce.id 
+                    where cart_id = ? With Values: ["i",3]
+select * from reciept where id = ?  and user_id = ? With Values: ["ii","4",3]
+select * from reciept where id = ?  and user_id = ? With Values: ["ii","4",3]
+select * from sauce With Values: []
+select * from cart where user_id = ? and state = ? With Values: ["ii",3,0]
+  select cart_item.id, sauce_id, qty, item_total, title, price, img_path 
+                    from cart_item
+                        inner join sauce on cart_item.sauce_id = sauce.id 
+                    where cart_id = ? With Values: ["i",4]
+select * from cart where user_id = ? and state = ? With Values: ["ii",3,0]
+  select cart_item.id, sauce_id, qty, item_total, title, price, img_path 
+                    from cart_item
+                        inner join sauce on cart_item.sauce_id = sauce.id 
+                    where cart_id = ? With Values: ["i",4]
+select * from cart where user_id = ? and state = ? With Values: ["ii",3,0]
+  select cart_item.id, sauce_id, qty, item_total, title, price, img_path 
+                    from cart_item
+                        inner join sauce on cart_item.sauce_id = sauce.id 
+                    where cart_id = ? With Values: ["i",4]
+select * from cart where user_id = ? and state = ? With Values: ["ii",3,0]
+  select cart_item.id, sauce_id, qty, item_total, title, price, img_path 
+                    from cart_item
+                        inner join sauce on cart_item.sauce_id = sauce.id 
+                    where cart_id = ? With Values: ["i",4]
+insert into payment (amount_paid, payment_type, description) values(?,?,?) With Values: ["dss",7.717499999999999,"pp",""]
+insert into address (user_id, firstname, lastname , email, address_type , address_line, address_line2,district) values(?,?,?,?,'bill',?,?,?) With Values: ["issssss",3,"sponge","bob","aakarl32@gmail.com","asd","asd","Belize"]
+insert into reciept 
+            (user_id, cart_id, tax, tax_amount, subtotal, total, item_qty, is_paid, payment_id, promo_code, promo_code_value,  bill_address_id, ship_address_id)
+                values (?,?,?,?,?,?,?,?,?,?,?,?,?) With Values: ["iiddddiiisdii",3,4,5,0.3675,7.35,7.717499999999999,1,1,4,"no promo",0,5,5]
+update cart set state = ? where id = ? With Values: ["ii",1,4]
+select * from reciept where id = ?  and user_id = ? With Values: ["ii","4",3]
+select * from payment where id = ? With Values: ["i",4]
+select * from address where id = ? With Values: ["i",5]
+select * from cart where id = ? With Values: ["i",4]
+  select cart_item.id, sauce_id, qty, item_total, title, price, img_path 
+                    from cart_item
+                        inner join sauce on cart_item.sauce_id = sauce.id 
+                    where cart_id = ? With Values: ["i",4]

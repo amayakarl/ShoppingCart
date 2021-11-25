@@ -2,23 +2,39 @@
     require_once 'src/Controllers/CheckoutController.php';
     $reciept = [];
     if(!isset($_GET["reciept"])){
+        
+
         echo '<p class="text-center mt-5">nothing to show</p>';
         die();
     }
-    else{
+    if(isset($_GET["pdf"])){
+
 
         $reciept = CheckoutController::getReciept($_GET["reciept"], $_USER["id"]);
      
         if(is_null($reciept)){
+            ob_clean();
             echo '<p class="text-center mt-5">could not find reciept</p>';
             die();
         }
-    }
-?>
-
-    <?php
-        //echo json_encode($reciept);
-        include 'includes/reciept.php';
         
-    ?>
+        include 'includes/reciept.php';
+        die();
+        
+    }
 
+?>
+<div class="container mt-5">
+    <div class="backToStore mb-5">
+        <a href="<?=url('/')?>" class="btn bg-red action text-white">
+            <span class="fa fa-arrow-left"></span>
+            Back to Store
+        </a>
+    </div>
+    <div>
+        <iframe src="<?=url('/?page=reciept&reciept='.$_GET["reciept"].'&pdf=true')?>" frameborder="1" width="100%" height="700px"></iframe>
+    </div>
+</div>
+<script>
+
+</script>
