@@ -1,0 +1,45 @@
+@import './vars.scss';
+@import './header.scss';
+@import './searchBar.scss';
+@import './shoppingCart.scss';
+@import './sortBar.scss';
+@import './store.scss';
+@import './checkout.scss';
+.text-red{
+    color: $colorPrimary;
+}
+.bg-red{
+    background-color: $colorPrimary;
+}
+
+button{
+    &:focus{
+        outline: none!important;
+        box-shadow: none!important;
+    }
+    &.action{
+        transition: all ease-in-out 0.3s;
+        box-shadow: 0px 1px 7px grey;
+
+         &:active{
+            box-shadow: none;
+        }
+    }
+}
+
+.s_alert{
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    position: fixed;
+    bottom: 150px;
+    width: 270px;
+    
+    right: -275px;
+   /* &-success{
+        background-color: $color-green;
+    }
+    &-error{
+        background-color: $color-red;
+    }*/
+}

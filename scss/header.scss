@@ -1,0 +1,11 @@
+#header{
+    background-color: $colorPrimary;
+    nav{
+        .navbar-brand{
+            font-size: 34px;
+        }
+        #navbarSupportedContent{
+            justify-content: flex-end;
+        }
+    }
+}

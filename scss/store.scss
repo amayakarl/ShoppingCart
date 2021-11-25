@@ -1,0 +1,91 @@
+#storeItemList {
+    .grid{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 10px;
+        row-gap: 30px;
+
+        @media screen and (max-width:1199px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @media screen and (max-width:768px) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        .itemCard{
+            border-radius: 10px;
+            box-shadow: 0px 0px 5px gray;
+            padding: 10px;
+            border: 1px solid $colorPrimary;
+            width: 295px;
+            justify-self: center;
+            
+            h5{
+                max-height: 25px;
+                overflow: hidden;
+            }
+            .price{
+                color: $colorPrimary;
+                font-size: 16px;
+            }
+
+            .image{
+                width: 85px;
+                height: 247px;
+                margin: auto;
+            }
+
+            .btn-danger{
+                background-color: $colorPrimary;
+                border-radius: 20px!important;
+            }
+            
+            .addToCart{
+                position: relative;
+                left: 35px;
+                bottom: 3px;
+                font-size: 25px;
+                width: 50px;
+                height: 50px;   
+                border: 1px solid $colorPrimary;
+                color: $colorPrimary;
+                padding: 5px;
+                border-radius: 50%;
+                background-color: white;
+                transition: all ease-in-out 0.3s;
+
+                &:active{
+                    background-color: $colorPrimary;
+                    color: white;
+                }
+            }
+        }
+    }
+}
+#ItemDetailsModal{
+    z-index: 9999;
+    .image{
+        width: 90px;
+        margin: auto;
+    }
+    .price{
+        font-size: 18px;
+    }
+
+    .addToCart{
+        font-size: 25px;
+        width: 50px;
+        height: 50px;   
+        border: 1px solid $colorPrimary;
+        color: $colorPrimary;
+        padding: 5px;
+        border-radius: 50%;
+        background-color: white;
+        transition: all ease-in-out 0.3s;
+
+        &:active{
+            background-color: $colorPrimary;
+            color: white;
+        }
+    }
+}

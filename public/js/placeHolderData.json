@@ -1,0 +1,112 @@
+{
+    "PlaceHolderData": [
+    {
+        "id":1, 
+        "brand":"Crystal", 
+        "title": "Crystal Hot Sauce (The OG)", 
+        "price":8.45, 
+        "description":" Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi inventore iure ipsam, ut sed aliquid suscipit reprehenderit aspernatur dolores nulla fuga eaque recusandae nihil aliquam magnam provident laboriosam optio doloribus.", 
+        "ingredients":"pepper, vinager, onions",
+        "img":"images/crystal-OG.png"
+    },
+    {
+        "id":2, 
+        "brand":"Marie Sharp", 
+        "title": "Marie Sharp OG Hot", 
+        "price":12.45, 
+        "description":" Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi inventore iure ipsam, ut sed aliquid suscipit reprehenderit aspernatur dolores nulla fuga eaque recusandae nihil aliquam magnam provident laboriosam optio doloribus.", 
+        "ingredients":"Select red habanero pepper, vinegar, fresh carrots, salt, onions, lime juice and garlic.",
+        "img":"images/marie-oghot.png"
+    },
+    {
+        "id":3, 
+        "brand":"Tabasco", 
+        "title": "Tabasco Red Pepper", 
+        "price":10.25, 
+        "description":" Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi inventore iure ipsam, ut sed aliquid suscipit reprehenderit aspernatur dolores nulla fuga eaque recusandae nihil aliquam magnam provident laboriosam optio doloribus.", 
+        "ingredients":"pepper, vinager, onions",
+        "img":"images/tobasco-redpepper.png"
+    },
+    {
+        "id":4, 
+        "brand":"Crystal", 
+        "title": "Crystal Hot Sauce Garlic", 
+        "price":7.35, 
+        "description":" Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi inventore iure ipsam, ut sed aliquid suscipit reprehenderit aspernatur dolores nulla fuga eaque recusandae nihil aliquam magnam provident laboriosam optio doloribus.", 
+        "ingredients":"Aged red cayenne peppers, distilled vinegar, salt, garlic powder, and natural flavor.",
+        "img":"images/crystal-garlic.png"
+    },
+    {
+        "id":5,
+        "price": 8.00,
+        "brand": "Marie Sharp",
+        "title": "Marie Sharp Habanero",
+        "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi inventore iure ipsam, ut sed aliquid suscipit reprehenderit aspernatur dolores nulla fuga eaque recusandae nihil aliquam magnam provident laboriosam optio doloribus.",
+        "ingredients":"Habanero pepper mash, capsium oil, fresh carrots, ginseng, lime juice, creole spices, onions, garlic and salt.",
+        "img":"images/marie-habanero.png"
+    
+    },
+    {
+        "id":6, 
+        "brand":"Tabasco", 
+        "title": "Tabasco Habanero Pepper", 
+        "price":11.25, 
+        "description":" Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi inventore iure ipsam, ut sed aliquid suscipit reprehenderit aspernatur dolores nulla fuga eaque recusandae nihil aliquam magnam provident laboriosam optio doloribus.", 
+        "ingredients":"pepper, vinager, onions",
+        "img":"images/tabasco-habanero.png"
+    },
+    {
+        "id":7, 
+        "brand":"Crystal", 
+        "title": "Crystal Extra Hot Sauce", 
+        "price":10.35, 
+        "description":" Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi inventore iure ipsam, ut sed aliquid suscipit reprehenderit aspernatur dolores nulla fuga eaque recusandae nihil aliquam magnam provident laboriosam optio doloribus.", 
+        "ingredients":"Aged red cayenne peppers, distilled vinegar, water, salt, natural flavorings, xanthan gum.",
+        "img":"images/crystal-extra.png"
+    },
+    {
+        "id":8, 
+        "brand":"Marie Sharp", 
+        "title": "Marie Sharp Pulp Habanero", 
+        "price":11.45, 
+        "description":" Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi inventore iure ipsam, ut sed aliquid suscipit reprehenderit aspernatur dolores nulla fuga eaque recusandae nihil aliquam magnam provident laboriosam optio doloribus.", 
+        "ingredients":"Select yellow habanero peppers, orange pulp, onions, key lime juice, vinegar, garlic and salt.",
+        "img":"images/marie-pulp.png"
+    },
+    {
+        "id":9, 
+        "brand":"Tabasco", 
+        "title": "Tabasco Green Pepper", 
+        "price":8.25, 
+        "description":" Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi inventore iure ipsam, ut sed aliquid suscipit reprehenderit aspernatur dolores nulla fuga eaque recusandae nihil aliquam magnam provident laboriosam optio doloribus.", 
+        "ingredients":"pepper, vinager, onions",
+        "img":"images/tobasco-green.png"
+    },
+    {
+        "id":10, 
+        "brand":"Crystal", 
+        "title": "Crystal Buffalo Sauce", 
+        "price":10.35, 
+        "description":" Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi inventore iure ipsam, ut sed aliquid suscipit reprehenderit aspernatur dolores nulla fuga eaque recusandae nihil aliquam magnam provident laboriosam optio doloribus.", 
+        "ingredients":"Distilled vinegar, aged red cayenne peppers, salt, water, canola oil, paprika, garlic powder, xanthan gum, sodium benzoate (preservative), natural butter flavoring.",
+        "img":"images/crystal-extra.png"
+    },
+    {
+        "id":11, 
+        "brand":"Marie Sharp", 
+        "title": "Marie Sharp Smoked Habanero", 
+        "price":14.45, 
+        "description":" Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi inventore iure ipsam, ut sed aliquid suscipit reprehenderit aspernatur dolores nulla fuga eaque recusandae nihil aliquam magnam provident laboriosam optio doloribus.", 
+        "ingredients":"Smoked habanero pepper, fresh carrots, vinegar, onions, salt, lime juice and garlic.",
+        "img":"images/smoked.png"
+    },
+    {
+        "id":12, 
+        "brand":"Tabasco", 
+        "title": "Tabasco Scorpion", 
+        "price":19.25, 
+        "description":" Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi inventore iure ipsam, ut sed aliquid suscipit reprehenderit aspernatur dolores nulla fuga eaque recusandae nihil aliquam magnam provident laboriosam optio doloribus.", 
+        "ingredients":"pepper, vinager, onions",
+        "img":"images/tabasco-scorpion.png"
+    }]
+}

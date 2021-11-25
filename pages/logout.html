@@ -1,0 +1,7 @@
+<?php
+require_once 'src/Database/Auth.php';
+
+Auth::removeAllKeysForUser($_USER["id"]);
+session_destroy();
+header('Location: '.url('/?page=login'));
+die();

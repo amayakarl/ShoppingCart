@@ -1,0 +1,24 @@
+<?php
+    require_once 'src/Controllers/CheckoutController.php';
+    $reciept = [];
+    if(!isset($_GET["reciept"])){
+        echo '<p class="text-center mt-5">nothing to show</p>';
+        die();
+    }
+    else{
+
+        $reciept = CheckoutController::getReciept($_GET["reciept"], $_USER["id"]);
+     
+        if(is_null($reciept)){
+            echo '<p class="text-center mt-5">could not find reciept</p>';
+            die();
+        }
+    }
+?>
+
+    <?php
+        //echo json_encode($reciept);
+        include 'includes/reciept.php';
+        
+    ?>
+

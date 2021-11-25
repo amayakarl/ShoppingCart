@@ -1,0 +1,106 @@
+#shoppingCartShow{
+    z-index: 9998;
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    font-size: 50px;
+    width: 82px;
+    height: 82px;  
+     
+
+    background-color: $colorPrimary;
+    border: none;
+    color: white;
+    padding: 5px;
+    border-radius: 50%;
+    box-shadow: 0px 1px 7px grey;
+    transition: all ease-in-out 0.3s;
+
+    &:hover{
+        box-shadow: none;
+
+    }
+
+    #shoppingCartItemCount{
+        font-size: 12px;
+        color: $colorPrimary;
+        position: fixed;
+        right: 53px;
+        bottom: 58px;
+        font-weight: bold;
+    }
+}
+
+#shoppingCart{
+    
+    background-color: white;
+    box-shadow: 0px 0px 5px gray;
+    padding: 20px;
+    border-left: 1px solid $colorPrimary;
+    transition: right ease-in-out 0.3s;
+    overflow-y: scroll;
+    @media  screen and (max-width:600px) {
+        h2{
+            font-size: 20px;
+        }
+        
+    }
+    @media screen and (max-width:767px) {
+        padding: 20px 0px!important;
+    }
+    
+    .actions{
+        position: relative;      
+
+    }
+    .item-list{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 20px;
+        row-gap: 20px;
+        @media screen and (max-width: 1200px) {
+            grid-template-columns: 1fr 1fr;
+        }
+        @media screen and (max-width:767px) {
+            grid-template-columns: 1fr;
+            justify-items: center;
+        }
+    }
+    .cart-list-item{
+        width: 270px;
+
+    }
+    &.show{
+        right: 0%;
+    }
+    .scrollable{
+        border:1px solid #e1e1e1;;
+        max-height: 500px;
+        
+        overflow-y: scroll;
+        margin: 10px 0;
+        padding: 10px;
+    }
+    .totals{
+        ul{
+            max-width: 270px;            
+
+            .label.col,.value.col{
+                text-align: right;
+            }
+            
+            .netTotal{
+                background-color:#f5f5f5;
+            }
+            
+        }
+        .checkout{
+            background-color: $colorPrimary;
+            color: white;
+            font-size: 18px;
+            border-radius: 20px;
+            padding: 10px 20px;
+            margin-top: 10px;
+        }
+    }
+}

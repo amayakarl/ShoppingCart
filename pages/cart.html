@@ -1,0 +1,84 @@
+
+<?php
+require_once 'src/Controllers/CartController.php';
+$cart = CartController::getCartIfExists($_USER["id"]);
+?>
+<div id="shoppingCart" class="p-5" data-id="<?=isset($cart["id"])?$cart["id"]:''?>">
+    <div class="backToStore mb-5 ml-2">
+        <a id="closeShoppingCart" class="btn bg-red action text-white" href="<?=url('/')?>">
+            <span class="fa fa-arrow-left"></span>
+            Coninue Shopping
+        </a>
+    </div>
+    <div class="container">
+        <h2 class="mt-5 ">Shopping Cart</h2>
+        <p class="text-muted mb-5">For
+            <?= $_USER["fname"].' '.$_USER["lname"] ?>
+        </p>
+        <div class="toplevel-actions">
+            <button id="clearCart" class="btn btn-danger bg-red">Clear Cart <span class="fa fa-trash"></span></button>
+        </div>
+
+
+        <div class="scrollable shopping-cart-list item-list">
+            <!--Dynamic content here-->
+            <?php
+                if(!isset($cart["id"])){
+               
+                    echo '<p class="ml-2">No items to show</p>';
+                }
+            ?>
+        </div>
+
+
+        <div class="totals">
+            <h4>Totals:</h4>
+            <ul class="list-group">
+                <li class="list-group-item grossTotal">
+                    <div class="container">
+                        <div class="row">
+                            <span class="label col">
+                                Total: $
+                            </span>
+                            <span class="value col">0.00</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item tax">
+                    <div class="container">
+                        <div class="row">
+                            <span class="col label">Tax (5%): $</span>
+                            <span class="value col">0.00</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="netTotal list-group-item">
+                    <div class="container">
+                        <div class="row">
+                            <span class="col label">Net Total: $</span>
+                            <span class="col value">0.00</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <a href="<?=url('/?page=checkout')?>" class="btn action btn-danger checkout mt-4">Billing <span
+                    class="fa fa-chevron-right"></span></a>
+        </div>
+    </div>
+</div>
+<?php 
+if(isset($cart["id"])){?>
+
+    <script>
+        $(document).ready(function(e){
+            $.ajaxSetup({
+                headers: { 'X-TONGUE-SPICE-API-KEY': $('meta[name="app-data-id"]').attr('content') }
+            });
+            var cartData = JSON.parse(`<?=json_encode($cart)?>`)
+            
+            var cart = new ShoppingCart(cartData, '#shoppingCart')
+            
+            cart.render()
+        })
+    </script>
+  <?php  }?> 

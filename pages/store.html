@@ -1,0 +1,156 @@
+<?php
+    require_once 'src/Controllers/StoreController.php';
+    require_once 'src/Controllers/CartController.php';
+    
+    $sauces = StoreController::getAllSauces();
+    $cart = CartController::getCartIfExists($_USER["id"]);
+    
+?>
+<div class="curtain" style="background: #000000b5;
+position: fixed;
+z-index: 9990;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+display:none;"></div>
+<div class="loading-spice bg-white round text-center" style="position:fixed; left:0; right:0; top:25%; bottom:0; ">
+    <h5>Loading Spices...</h5>
+    <img async src="<?=url('/public/images/loader.gif')?>" alt="">
+</div>
+<button id="shoppingCartShow" data-id="<?=isset($cart["id"])?$cart["id"]:''?>" onclick="window.location.href=BASE_PATH+'/?page=cart'">
+    <span class="fa fa-shopping-cart"></span>
+    <span id="cartLoadingAnimation" style="display:none;" class="fa fa-spinner fa-spin"></span>
+    <?php 
+    
+    if(isset($cart["itemCount"])){
+        echo '<span id="shoppingCartItemCount">'.$cart["itemCount"].'</span>';
+    }else{
+        echo '<span id="shoppingCartItemCount">0</span>';
+    }?>
+</button>
+<div id="sortBar" class="mt-5 mb-5"></div>
+<div class="container mb-5">
+    <div class="row">
+
+        <div class="col-md-10">
+            <main id="store" class="mb-5">
+                <div id="storeItemList">
+                    <div class="grid list">
+                        <!--Dynamically rendered content-->
+                        <?php 
+                            foreach($sauces as $sauce){ ?>
+                        <div class="itemCard text-center" data-id="<?=$sauce["id"]?>">
+                            <div class="text-right">
+                                <span class="price">
+                                    <span class="prefix">$</span>
+                                    <span class="value">
+                                        <?=$sauce["price"]?>
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="image">
+                                <img class="img-fluid" src="<?=url('/public/'.$sauce["img"])?>" alt="<?=$sauce["title"]?> image">
+                            </div>
+                            <h5 class="mt-3 mb-5">
+                                <?=$sauce["title"]?>
+                            </h5>
+                            <div class="container-fluid">
+                                <div class="actions row">
+                                    <div class="col-6">
+                                        <button data-id="<?=$sauce["id"]?>" data-target="#ItemDetailsModal"
+                                            data-toggle="modal" class="btn btn-danger rounded details
+                                            action">Details</button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button style="display:<?=isInCart($sauce["id"], $cart)?'none':''?>" class="addToCart action" data-id="<?=$sauce["id"]?>">
+                                            <span class="fa fa-cart-plus"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php } ?>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ItemDetailsModal" tabindex="-1" role="dialog" aria-labelledby="ItemDetailsModalLabel"
+    aria-hidden="true" style="z-index:9988">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-red" id="ItemDetailsModalLabel">Sauce Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="image">
+                    <img id="sauce-img" class="img-fluid" src="" alt="">
+                </div>
+                <div id="description" class="mt-5 mb-4">
+
+                </div>
+                <h5 class="text-red">Ingredients</h5>
+                <div id="ingredients" class="mb-4">
+
+                </div>
+                <div class="bottom container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6 price text-red">
+                            Price:
+                            <span class="prefix">$</span><span class="value"></span>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="<?=url('/public/js/Cart.js')?>"></script>
+<!--Entry Point-->
+<script>
+    /**
+ * Home Page entry point, depends on 
+ *  js/ Alert.js
+ *   -- ShoppingCart.js
+ *   -- ShoppingCartStore.js
+ *   -- SortBar.js
+ */
+
+    $(document).ready(function (e) {
+        // set default headers for ajax request
+        $.ajaxSetup({
+            headers: { 'X-TONGUE-SPICE-API-KEY': $('meta[name="app-data-id"]').attr('content') }
+        });
+        
+        var storeData = JSON.parse(`<?=json_encode($sauces)?>`);
+        var cartItems = JSON.parse(`<?=isset($cart["id"])?json_encode($cart["items"]):'[]'?>`);
+
+        storeData = storeData.map(item =>{
+            item.price = parseFloat(item.price)
+            item.isInCart = isAlreadyInCart(item.id, cartItems)
+            return item
+        })
+
+        store = new ShoppingCartStore('#storeItemList', storeData)
+        // create a new SortBar Instance
+        sortBar = new SortBar('#sortBar',
+            [//define the sort bar options
+                { type: 'letter', name: 'Brands', initialState: 'unsorted' },
+                { type: 'number', name: 'Price', initialState: 'unsorted' }
+            ],
+            onSortOptionClicked = sortItems => store.sort(sortItems) // define what to do when a sort option is clicked            
+        )
+        store.initEventHandlers()
+        $('.loading-spice').hide()
+        // will prevent any action from any element with the classes disabledLink and disabledButton
+        $('.disabledLink, .disabledButton').click(e => e.preventDefault())
+    })
+</script>

@@ -1,0 +1,164 @@
+<?php 
+require_once 'src/Controllers/UserController.php';
+require_once 'src/Database/Auth.php';
+
+
+if($isLoggedIn){
+    header('Location: '.url('/'));
+    die();
+}
+
+$validateResult = NULL;
+
+if($_POST["sbt"] ?? false){
+
+    $user = new UserController;
+    // validate
+    $validateResult = $user->validateUserSignUpForm($_POST);
+
+    if(!$validateResult["state"]){
+        $_SESSION["signup_errors"] = true;
+        $_SESSION["signup_error_message"] = $validateResult["message"];
+        $_SESSION["signup_errors_values"] = $_POST;
+        header('Location: '.url('/?page=signup'));
+
+    }
+    else{
+        // create user
+        $newUser = $user->createUser($_POST);
+        // check if creation succeeded.
+        if(!$newUser["status"]){
+            $_SESSION["signup_errors"] = true;
+            $_SESSION["signup_error_message"] = $newUser["message"];
+            $_SESSION["signup_errors_values"] = $_POST;
+            header('Location: '.url('/?page=signup'));
+            die();
+        }
+        else{
+
+            // create login session for user
+            $_SESSION["isLoggedIn"] = true;
+            $key = $newUser["data"]["email"].$newUser["data"]["password"].date('Y-m-d i:s:u');
+            $key = Auth::addKey(//create an api key for the user
+                $newUser["data"]["id"], 
+                md5($key)
+            );
+            
+            $newUser["data"]["api_key"] = $key;
+            $_SESSION["user"] = $newUser["data"];
+            
+            unset($_SESSION["signup_errors"]);
+            unset( $_SESSION["signup_error_message"]);
+            unset( $_SESSION["signup_errors_values"]);
+            
+            header('Location: '.url('/'));
+            die();
+        }
+    }
+}
+?>
+<?php
+$hasErrors = $_SESSION['signup_errors'] ?? false;
+$errorValues = $hasErrors?$_SESSION["signup_errors_values"] ?? NULL : NULL;
+?>
+<div class="container mt-5">
+   
+    <h1>Sign Up</h1>
+    <?php
+    if(isset($_SESSION["signup_error_message"])){?>
+        <div class="alert alert-danger"><?=$_SESSION["signup_error_message"]?></div>
+    <?php } ?>
+    <form action="" method="POST" id="signup" class="p-3 bg-light needs-validation" novalidate>
+        <div class="row">
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="firstname">First Name</label>
+
+            <input type="text" required name="firstname" value="<?=ld_($errorValues, "firstname")?>" id="firstname" class="form-control">
+            <div class="invalid-feedback">
+                Please enter your first name.
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="lastname">Last Name</label>
+            <input type="text" required name="lastname" value="<?=ld_($errorValues, "lastname")?>" id="lastname" class="form-control">
+            <div class="invalid-feedback">
+                Please enter your last name.
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="Email">Email</label>
+            <input type="email" required name="email" value="<?=ld_($errorValues, "email")?>" pattern="[^@\s]+@[^@\s]+\.\w*" id="email" class="form-control">
+            <div class="invalid-feedback">
+                Please enter a valid email.
+            </div>
+        </div>
+    </div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" required pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}" name="password" id="password" class="form-control">
+            <div class="form-text text-muted">Password must be at least 8 and no more than 16 characters in length and must contain at least one number, one upper case letter, one lower case letter and one special character.</div>
+            <div class="invalid-feedback">
+                Please enter a valid password.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="repassword">Confirm Password</label>
+            <input type="password" required name="conf_password" id="repassword" class="form-control">
+            <div class="valid-feedback">
+                Passwords match.
+            </div>
+            <div class="invalid-feedback">
+                Passwords do not match.
+            </div>
+        </div>
+        <div class="form-check">
+            
+                <input type="checkbox" required name="tos" id="tos" class="form-check-input"> 
+                <label for="tos">Agree to our terms and conditions</label>
+                <div class="invalid-feedback">
+                    Please agree to the terms and conditions before submitting.
+                </div>
+            
+        </div>
+        <div class="mt-3">
+            <button class="btn btn-success" name="sbt" value="true" type="submit">Submit</button> 
+            <button class="btn btn-warning" type="reset">Reset Form</button>
+        </div>
+    </form>
+    <div class="mt-3 mb-5">
+        <a href="<?=url('/')?>">Already have an account? Login instead.</a>
+    </div>
+</div>
+<script>
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+        
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+        form.classList.add('was-validated')
+      }, false)
+    })
+
+    $('#repassword').on('keyup', function(e){
+        if($(this).val() == $('#password').val())
+            $(this).removeClass('is-invalid').addClass('is-valid')
+        else $(this).removeClass('is-valid').addClass('is-invalid')
+    })
+})()
+</script>

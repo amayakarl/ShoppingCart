@@ -1,0 +1,13 @@
+{
+  "name": "shoppingCartApp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch-sass": "nodemon -e scss --watch scss -x \"bash compilesass.bash\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
